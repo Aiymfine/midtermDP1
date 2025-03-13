@@ -1,15 +1,16 @@
 class PaymentFactory{
     public static PaymentMethod createPayment(String type){
-        switch(type.toLowerCase()){
-            case "cc": 
+        if (type.toLowerCase().equals("cc")) {
             return new CreditCardPayment();
-            case "pp":
+        } else if (type.toLowerCase().equals("pp")) {
             return new PayPalPayment();
-            case "cr":
+        } else if (type.toLowerCase().equals("cr")) {
             return new CryptoPayment();
-            default: throw new IllegalArgumentException("WRONG PAYMENT TYPE"); 
-             //if input will not be these 3 types then it throws exception
+        } else {
+            throw new IllegalArgumentException("WRONG PAYMENT TYPE");
         }
+             //if input will not be these 3 types then it throws exception
+        
     }
 }// here we use factory pattern to create payment methods,
 // its also flexible and convinient especially if you deside to add new payment method
